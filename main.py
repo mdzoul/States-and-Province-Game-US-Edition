@@ -10,10 +10,7 @@ def show_state(ans):
     
     
 def states_to_learn():
-    missing_states = []
-    for state in state_list:
-        if state not in guessed_states:
-            missing_states.append(state)
+    missing_states = [state for state in state_list if state not in guessed_states]
     new_data = pd.DataFrame(missing_states)
     print(new_data)
 
@@ -54,7 +51,7 @@ while score != all_states:
     
     if answer == "Exit":
         break
-        
+
     if answer in state_list and answer not in guessed_states:
         guessed_states.append(answer)
         score += 1
