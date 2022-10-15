@@ -7,6 +7,15 @@ def show_state(ans):
     turtle.penup()
     turtle.goto(x, y)
     turtle.write(arg=f"{ans}", align="center", font=("Helvetica", 8, "normal"))
+    
+    
+def states_to_learn():
+    missing_states = []
+    for state in state_list:
+        if state not in guessed_states:
+            missing_states.append(state)
+    new_data = pd.DataFrame(missing_states)
+    print(new_data)
 
 
 def win_game():
@@ -58,11 +67,7 @@ while score != all_states:
 if score == all_states:
     win_game()
 else:
-    missing_states = []
-    for state in state_list:
-        if state not in guessed_states:
-            missing_states.append(state)
+    states_to_learn()
     exit_game(score)
-    new_data = pd.DataFrame(missing_states)
-    print(new_data)
+    
 turtle.mainloop()
